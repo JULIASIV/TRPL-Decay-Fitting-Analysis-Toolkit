@@ -1,0 +1,15 @@
+    Goal: Build a tool that fits multi-exponential decays to simulated/experimental TRPL data.
+
+    Tools: Python (SciPy curve_fit, Lmfit, Matplotlib)
+
+    Deliverables:
+
+        Generate simulated TRPL decays with noise
+
+        Implement biexponential/triexponential fitting
+
+        Extract carrier lifetimes and amplitudes
+
+        Create publication-quality plots
+
+    Bonus: Apply to real published data from arXiv papers (e.g., search "AlGaN TRPL")

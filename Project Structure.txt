@@ -1,0 +1,19 @@
+trpl-analyzer/
+├── trpl_analyzer/
+│   ├── __init__.py
+│   ├── data_generator.py      # Simulated data generation
+│   ├── fitting.py             # Multi-exponential fitting functions
+│   ├── visualization.py       # Plotting utilities
+│   ├── utils.py               # Helper functions
+│   └── io.py                  # Data loading/saving
+├── examples/
+│   ├── simulated_data_demo.py
+│   ├── biexponential_fit.py
+│   └── triexponential_fit.py
+├── notebooks/
+│   └── tutorial.ipynb
+├── tests/
+│   └── test_fitting.py
+├── requirements.txt
+├── setup.py
+└── README.md
