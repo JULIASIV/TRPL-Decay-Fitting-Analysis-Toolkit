@@ -1,0 +1,127 @@
+Quick Start
+python
+
+from trpl_analyzer import TRPLDataGenerator, TRPLFitter, TRPLPlotter
+
+# Generate simulated data
+t = TRPLDataGenerator.create_time_axis(num_points=500)
+decay_true, decay_noisy = TRPLDataGenerator.generate_decay(
+    t, params={'A1': 1000, 'tau1': 2, 'A2': 500, 'tau2': 20}, 
+    model='biexponential'
+)
+
+# Fit the data
+fitter = TRPLFitter()
+fit_result = fitter.fit_scipy(t, decay_noisy, model='biexponential')
+
+# Plot results
+plotter = TRPLPlotter(style='publication')
+plotter.plot_decay(t, decay_noisy, fit_result=fit_result)
+
+Examples
+
+Check the examples/ directory for:
+
+    simulated_data_demo.py: Basic fitting demonstration
+
+    biexponential_fit.py: Biexponential fitting example
+
+    triexponential_fit.py: Triexponential fitting example
+
+    Notebook tutorial in notebooks/tutorial.ipynb
+
+Advanced Usage
+Using LMFit for Better Parameter Control
+python
+
+fit_result = fitter.fit_lmfit(
+    t, y, 
+    model='triexponential',
+    initial_params={'tau1': 0.5, 'tau2': 5, 'tau3': 50}
+)
+
+Analyzing Real Data
+python
+
+from trpl_analyzer.io import TRPLDataIO
+
+# Load data from CSV
+t, y = TRPLDataIO.load_csv('data.csv', time_col='Time_ns', intensity_col='PL_Intensity')
+
+Citing
+
+If you use this tool in your research, please cite:
+text
+
+@software{trpl_analyzer2023,
+  title = {TRPL Analyzer: A Python tool for multi-exponential decay fitting},
+  author = {Your Name},
+  year = {2023},
+  url = {https://github.com/yourusername/trpl-analyzer}
+}
+
+License
+
+MIT License
+text
+
+
+## Additional Files
+
+### For arXiv paper analysis (bonus feature), create:
+
+```python
+# examples/arxiv_data_analysis.py
+"""
+Analyze real TRPL data from arXiv papers
+"""
+import requests
+import re
+import numpy as np
+from io import StringIO
+
+class arXivDataFetcher:
+    """Fetch and parse TRPL data from arXiv papers"""
+    
+    @staticmethod
+    def extract_data_from_arxiv(arxiv_id: str):
+        """Extract TRPL data from arXiv paper (requires manual parsing)"""
+        # This would need custom implementation based on specific paper formats
+        pass
+    
+    @staticmethod
+    def parse_imagej_data(imagej_output: str):
+        """Parse data extracted using ImageJ from paper figures"""
+        pass
+
+Key Features Implemented:
+
+    Simulated Data Generation: Create decays with realistic noise
+
+    Multi-exponential Fitting: Mono-, bi-, and tri-exponential models
+
+    Two Fitting Backends: SciPy (simple) and LMFit (advanced)
+
+    Publication-quality Plots: Customizable matplotlib styles
+
+    Data I/O: Load/save various formats
+
+    Parameter Analysis: Calculate lifetimes, amplitudes, averages
+
+    Residual Analysis: Diagnostic plots for fit quality
+
+    Component Visualization: Show individual exponential contributions
+
+To run the tool:
+bash
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run example
+python examples/simulated_data_demo.py
+
+# Or use in Jupyter
+jupyter notebook notebooks/tutorial.ipynb
+
+This comprehensive tool provides everything needed to analyze TRPL data from both simulated and experimental sources, with publication-quality output and robust fitting algorithms.
